@@ -1,7 +1,24 @@
+using Microsoft.AspNetCore.Identity;
+using ShopPanel.DataAccess.Context;
+using ShopPanel.Entity.Entities;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
+builder.Services.AddIdentity<AppUser, AppRole>(opt =>
+{
+	opt.Password.RequireNonAlphanumeric = false;
+	opt.Password.RequireLowercase = false;
+	opt.Password.RequireUppercase = false;
+})
+
+	.AddRoleManager<RoleManager<AppRole>>()
+	.AddEntityFrameworkStores<AppDbContext>()
+	.AddDefaultTokenProviders();
+
 
 var app = builder.Build();
 
@@ -18,6 +35,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
