@@ -1,0 +1,58 @@
+﻿@model ProductAddDto
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+
+    <h4 class="fw-bold py-3 mb-4">
+        <span class="text-muted fw-light">Ürün Yönetimi /</span> Ürün Ekle
+    </h4>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <form asp-controller="Product" asp-action="Add" method="post" enctype="multipart/form-data">
+                    <div class="card-body">
+
+                        <div class="form-group">
+                            <label asp-for="CategoryId">Kategori</label>
+                            <select id="categoryList" class="form-control mb-3" asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories,"Id","Name"))"></select>
+                            <span asp-validation-for="CategoryId" class="text-danger "></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="ProductCode" id="defaultFormControlInput" class="form-label">Ürün Kodu</label>
+                            <input asp-for="ProductCode" type="text" class="form-control mb-3" id="defaultFormControlInput" placeholder="Ürün kodunu giriniz.." aria-describedby="defaultFormControlHelp">
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="ProductName" for="defaultFormControlInput" class="form-label">Ürün Adı</label>
+                            <input asp-for="ProductName" type="text" class="form-control mb-3" id="defaultFormControlInput" placeholder="Ürün adını giriniz.." aria-describedby="defaultFormControlHelp">
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Brand" for="defaultFormControlInput" class="form-label">Marka</label>
+                            <input asp-for="Brand" type="text" class="form-control mb-3" id="defaultFormControlInput" placeholder="Marka adını giriniz.." aria-describedby="defaultFormControlHelp">
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Stock" for="defaultFormControlInput" class="form-label">Stok</label>
+                            <input asp-for="Stock" type="text" class="form-control mb-3" id="defaultFormControlInput" placeholder="Stok bilgisini giriniz.." aria-describedby="defaultFormControlHelp">
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="StoreId">Mağaza</label>
+                            <select id="storeList" class="form-control mb-3" asp-for="StoreId" asp-items="@(new SelectList(Model.Stores,"Id","StoreName"))"></select>
+                            <span asp-validation-for="StoreId" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block">Kaydet</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

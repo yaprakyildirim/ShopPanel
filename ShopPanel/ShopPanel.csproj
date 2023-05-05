@@ -19,4 +19,8 @@
     <ProjectReference Include="..\ShopPanel.DataAccess\ShopPanel.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Models\" />
+  </ItemGroup>
+
 </Project>
