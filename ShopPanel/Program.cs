@@ -1,11 +1,16 @@
 using Microsoft.AspNetCore.Identity;
 using ShopPanel.DataAccess.Context;
 using ShopPanel.Entity.Entities;
+using ShopPanel.DataAccess.Extensions;
+using ShopPanel.Business.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.LoadDataLayerExtensions(builder.Configuration);
+builder.Services.LoadServiceLayerExtensions();
+builder.Services.AddSession();
+
 // Add services to the container.
-builder.Services.AddControllersWithViews();
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 builder.Services.AddIdentity<AppUser, AppRole>(opt =>
@@ -19,6 +24,23 @@ builder.Services.AddIdentity<AppUser, AppRole>(opt =>
 	.AddEntityFrameworkStores<AppDbContext>()
 	.AddDefaultTokenProviders();
 
+builder.Services.ConfigureApplicationCookie(config =>
+{
+	config.LoginPath = new PathString("/Admin/Auth/Login");
+	config.LogoutPath = new PathString("/Admin/Auth/Logout");
+	config.Cookie = new CookieBuilder
+	{
+		Name = "FoodBox",
+		HttpOnly = true,
+		SameSite = SameSiteMode.Strict, //üçüncü taraf isteklerden kaynaklanan hiçbir isteðe SameSite olarak set edilen Cookie gönderilmeyecektir.
+		SecurePolicy = CookieSecurePolicy.SameAsRequest //Canlýya cýkarken SameAsRequest yerine Always seçeneði seçilir.
+														//Sadece htpps çerezlerin güvenli bir öznitelikle ayarlanmasýna izin verir ve güvenli olmayan
+														//çerezlerin ayarlanmasýný engeller 
+	};
+	config.SlidingExpiration = true;
+	config.ExpireTimeSpan = TimeSpan.FromDays(7); //7 gün boyunca griþ bilgiileri tutulur
+	config.AccessDeniedPath = new PathString("/Admin/Auth/AccessDenied");//Yetkisiz giriþ olduðunda hata verir
+});
 
 var app = builder.Build();
 
@@ -32,14 +54,21 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseSession();
 
 app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.UseEndpoints(endpoints =>
+{
+	endpoints.MapAreaControllerRoute(
+		name: "Admin",
+		areaName: "Admin",
+		pattern: "Admin/{controller=Home}/{action=Index}/{id?}"
+		);
+	endpoints.MapDefaultControllerRoute();
+});
 
 app.Run();

@@ -1,9 +1,5 @@
 ﻿using ShopPanel.Entity.DTOs.Categories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ShopPanel.Entity.DTOs.Stores;
 
 namespace ShopPanel.Entity.DTOs.Products
 {

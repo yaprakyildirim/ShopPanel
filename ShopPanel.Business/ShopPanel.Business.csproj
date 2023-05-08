@@ -16,8 +16,4 @@
     <ProjectReference Include="..\ShopPanel.Entities\ShopPanel.Entity.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\Abstract\" />
-  </ItemGroup>
-
 </Project>

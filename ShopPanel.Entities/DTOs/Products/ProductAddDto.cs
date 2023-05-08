@@ -1,4 +1,5 @@
 ﻿using ShopPanel.Entity.DTOs.Categories;
+using ShopPanel.Entity.DTOs.Stores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
