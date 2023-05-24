@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace ShopPanel.Business.AutoMapper.Stores
 {
-	public class StoreProfile : Profile
-	{
-		public StoreProfile()
-		{
-			CreateMap<StoreDto, Store>().ReverseMap();
-		}
-	}
+    public class StoreProfile : Profile
+    {
+        public StoreProfile()
+        {
+            CreateMap<StoreDto, Store>().ReverseMap();
+        }
+    }
 }

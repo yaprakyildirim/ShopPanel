@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace ShopPanel.Business.AutoMapper.Categories
 {
-	public class CategoryProfile : Profile
-	{
-		public CategoryProfile()
-		{
-			CreateMap<CategoryDto, Category>().ReverseMap();
-		}
-	}
+    public class CategoryProfile : Profile
+    {
+        public CategoryProfile()
+        {
+            CreateMap<CategoryDto, Category>().ReverseMap();
+        }
+    }
 }

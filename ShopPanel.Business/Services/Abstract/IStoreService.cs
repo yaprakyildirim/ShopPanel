@@ -2,8 +2,8 @@
 
 namespace ShopPanel.Business.Services.Abstract
 {
-	public interface IStoreService
-	{
-		Task<List<StoreDto>> GetAllStoresWithNonDeleted();
-	}
+    public interface IStoreService
+    {
+        Task<List<StoreDto>> GetAllStoresWithNonDeleted();
+    }
 }

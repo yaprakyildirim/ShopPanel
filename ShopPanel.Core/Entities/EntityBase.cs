@@ -8,7 +8,7 @@ namespace ShopPanel.Core.Entities
 {
     public class EntityBase : IEntityBase
     {
-        public virtual Guid Id { get; set; }= Guid.NewGuid();
+        public virtual Guid Id { get; set; } = Guid.NewGuid();
         public string CreatedBy { get; set; } = "Undefined";
         public string? ModifiedBy { get; set; }
         public string? DeleteBy { get; set; }

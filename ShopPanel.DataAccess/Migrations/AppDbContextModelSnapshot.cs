@@ -48,6 +48,29 @@ namespace ShopPanel.DataAccess.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("a780b1c8-6d4b-452d-9bc4-40f184964380"),
+                            ConcurrencyStamp = "1d4e4d0d-8f93-4ff3-a118-8a4ef96647d2",
+                            Name = "Superadmin",
+                            NormalizedName = "SUPERADMIN"
+                        },
+                        new
+                        {
+                            Id = new Guid("c457729b-87e5-4d96-9965-eefb8e36a203"),
+                            ConcurrencyStamp = "95dcd119-044a-4fa7-8da1-479a0bdb3c00",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = new Guid("855b21a0-2a28-4c07-a6f4-6fc5392b30a6"),
+                            ConcurrencyStamp = "024e6a95-441e-454f-8fbf-967fa1c20346",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        });
                 });
 
             modelBuilder.Entity("ShopPanel.Entity.Entities.AppRoleClaim", b =>
@@ -151,6 +174,48 @@ namespace ShopPanel.DataAccess.Migrations
                     b.HasIndex("StoreId");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("e6c8d1cd-1b18-473a-b68a-7b3cb247307d"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "b4a5676a-6573-4b01-8bb0-40fc4fea418c",
+                            Email = "superadmin@gmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Yaprak",
+                            LastName = "Yildirim",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "SUPERADMIN@GMAIL.COM",
+                            NormalizedUserName = "SUPERADMIN@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDtmPZy0FZ6ECeH0nNSYhJJL5TAmW9LIjxIaP4TAm+V31TfuOXNoT5dVVnhutEt6hg==",
+                            PhoneNumber = "+905423897485",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "cc582e88-deff-456e-8884-2c8e28e79d2f",
+                            StoreId = new Guid("c9cc4f4e-39ee-46c9-b5a6-fcb2674c71c8"),
+                            TwoFactorEnabled = false,
+                            UserName = "superadmin@gmail.com"
+                        },
+                        new
+                        {
+                            Id = new Guid("4f3d95f2-ad3e-4172-9b35-3d80ecfd0624"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "8ceac08f-ddd5-4d06-9e2d-7b4ef90ce51c",
+                            Email = "admin@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Admin",
+                            LastName = "User",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@GMAIL.COM",
+                            NormalizedUserName = "ADMIN@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJmjysM9iSmDIrm9ZEkOMoZL7kk9YkVfh1/HlwGfADDQX1yRr1IxuKh3E5ZKh5iAjA==",
+                            PhoneNumber = "+905423891212",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "16ae7a64-5574-4af2-9749-a731470524a8",
+                            StoreId = new Guid("40888f2b-9891-4fa4-abb2-993e4682fd0b"),
+                            TwoFactorEnabled = false,
+                            UserName = "admin@gmail.com"
+                        });
                 });
 
             modelBuilder.Entity("ShopPanel.Entity.Entities.AppUserClaim", b =>
@@ -180,10 +245,12 @@ namespace ShopPanel.DataAccess.Migrations
             modelBuilder.Entity("ShopPanel.Entity.Entities.AppUserLogin", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -211,6 +278,18 @@ namespace ShopPanel.DataAccess.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = new Guid("e6c8d1cd-1b18-473a-b68a-7b3cb247307d"),
+                            RoleId = new Guid("a780b1c8-6d4b-452d-9bc4-40f184964380")
+                        },
+                        new
+                        {
+                            UserId = new Guid("4f3d95f2-ad3e-4172-9b35-3d80ecfd0624"),
+                            RoleId = new Guid("c457729b-87e5-4d96-9965-eefb8e36a203")
+                        });
                 });
 
             modelBuilder.Entity("ShopPanel.Entity.Entities.AppUserToken", b =>
@@ -273,7 +352,7 @@ namespace ShopPanel.DataAccess.Migrations
                         {
                             Id = new Guid("cf794b4b-ddf3-4dc4-9905-5ad6adfb9cd5"),
                             CreatedBy = "Admin Test",
-                            CreatedDate = new DateTime(2023, 5, 5, 10, 55, 54, 281, DateTimeKind.Local).AddTicks(3379),
+                            CreatedDate = new DateTime(2023, 5, 24, 15, 14, 21, 280, DateTimeKind.Local).AddTicks(1607),
                             IsDeleted = false,
                             Name = "Çikolata"
                         },
@@ -281,7 +360,7 @@ namespace ShopPanel.DataAccess.Migrations
                         {
                             Id = new Guid("19aa3e6c-b4aa-4e53-998b-dbf0a5750512"),
                             CreatedBy = "Admin Test",
-                            CreatedDate = new DateTime(2023, 5, 5, 10, 55, 54, 281, DateTimeKind.Local).AddTicks(3382),
+                            CreatedDate = new DateTime(2023, 5, 24, 15, 14, 21, 280, DateTimeKind.Local).AddTicks(1610),
                             IsDeleted = false,
                             Name = "Gofret"
                         });
@@ -357,11 +436,11 @@ namespace ShopPanel.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("4ff5dd15-d6a6-406b-9ab5-45b57bf53a19"),
+                            Id = new Guid("b3f53283-672d-41c5-ba54-7ad7c127d913"),
                             Brand = "Ülker",
                             CategoryId = new Guid("cf794b4b-ddf3-4dc4-9905-5ad6adfb9cd5"),
                             CreatedBy = "Admin Test",
-                            CreatedDate = new DateTime(2023, 5, 5, 10, 55, 54, 281, DateTimeKind.Local).AddTicks(3546),
+                            CreatedDate = new DateTime(2023, 5, 24, 15, 14, 21, 280, DateTimeKind.Local).AddTicks(1774),
                             IsDeleted = false,
                             ProductCode = 1,
                             ProductName = "Coko",
@@ -372,11 +451,11 @@ namespace ShopPanel.DataAccess.Migrations
                         },
                         new
                         {
-                            Id = new Guid("e9a7424f-2896-4f16-873a-96c7721cc6b8"),
+                            Id = new Guid("86927d27-621b-4cdd-a3c3-d96db43e055e"),
                             Brand = "Torku",
                             CategoryId = new Guid("19aa3e6c-b4aa-4e53-998b-dbf0a5750512"),
                             CreatedBy = "Admin Test",
-                            CreatedDate = new DateTime(2023, 5, 5, 10, 55, 54, 281, DateTimeKind.Local).AddTicks(3550),
+                            CreatedDate = new DateTime(2023, 5, 24, 15, 14, 21, 280, DateTimeKind.Local).AddTicks(1778),
                             IsDeleted = false,
                             ProductCode = 2,
                             ProductName = "Puskevit",
@@ -429,6 +508,28 @@ namespace ShopPanel.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Stores");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("c9cc4f4e-39ee-46c9-b5a6-fcb2674c71c8"),
+                            Address = "Kartal Atalar mah",
+                            CreatedBy = "Admin Test",
+                            CreatedDate = new DateTime(2023, 5, 24, 15, 14, 21, 280, DateTimeKind.Local).AddTicks(5169),
+                            IsDeleted = false,
+                            Phone = 216145,
+                            StoreName = "Kartal"
+                        },
+                        new
+                        {
+                            Id = new Guid("40888f2b-9891-4fa4-abb2-993e4682fd0b"),
+                            Address = "Pendik Dogu mah",
+                            CreatedBy = "Admin Test",
+                            CreatedDate = new DateTime(2023, 5, 24, 15, 14, 21, 280, DateTimeKind.Local).AddTicks(5171),
+                            IsDeleted = false,
+                            Phone = 316145,
+                            StoreName = "Pendik"
+                        });
                 });
 
             modelBuilder.Entity("ShopPanel.Entity.Entities.AppRoleClaim", b =>

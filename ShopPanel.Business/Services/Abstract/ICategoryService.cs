@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace ShopPanel.Business.Services.Abstract
 {
-	public interface ICategoryService
-	{
-		public Task<List<CategoryDto>> GetAllCategoriesNonDeleted();
-	}
+    public interface ICategoryService
+    {
+        public Task<List<CategoryDto>> GetAllCategoriesNonDeleted();
+    }
 }
